@@ -1,16 +1,13 @@
-import SignInButton from "./auth/sign-in-btn";
+import { Radar, User } from "lucide-react";
 import Logo from "./logo";
 
 function Header() {
   return (
-    <header className="container mx-auto mt-8 px-4">
-      <nav className="bg-background/50 relative z-50 container mx-auto mt-8 flex items-center justify-between gap-1 rounded-xl border-t-2 border-b-2 border-l-2 px-[5vw] py-8 shadow-md backdrop-blur-md">
+    <header className="fixed top-0 left-1/2 z-50 container -translate-x-1/2 px-4">
+      <nav className="bg-background/50 mt-8 flex h-20! items-center justify-center gap-6 rounded-xl border-2 px-4 shadow-md backdrop-blur-2xl">
+        <User className="button-hover hover:text-primary cursor-pointer" />
         <Logo />
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-3">
-            <SignInButton />
-          </div>
-        </div>
+        <Radar className="button-hover hover:text-primary cursor-pointer" />
       </nav>
     </header>
   );

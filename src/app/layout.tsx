@@ -28,7 +28,7 @@ export default function RootLayout({
           playsInline
           loop
           poster="/bg-poster.webp"
-          className="fixed inset-0 -z-10 h-full w-full object-cover"
+          className="fixed inset-0 -z-10 h-full w-full -translate-x-40 object-cover sm:-translate-10"
         >
           <source
             src="/bg-optimized-downscaled-keyframed.webm"
@@ -39,7 +39,9 @@ export default function RootLayout({
         <div className="sm:text-lg">
           <Providers>
             <Header />
-            <main className="container mx-auto my-8 px-4">{children}</main>
+            <main className="container mx-auto mt-40 mb-8 px-4">
+              {children}
+            </main>
             <Footer />
           </Providers>
         </div>

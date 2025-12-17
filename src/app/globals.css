@@ -141,6 +141,15 @@
   }
 }
 
+@utility radial-gradient {
+  background: radial-gradient(
+    circle at center,
+    #434343 0%,
+    #000 50%,
+    transparent 100%
+  );
+}
+
 @layer components {
   .button-hover {
     @apply transition-all duration-300 ease-in-out hover:-translate-y-0.5;
@@ -148,17 +157,17 @@
 
   .fire-border {
     position: relative;
-    border: 2px solid transparent;
-    border-radius: 0.75rem; /* matches rounded-xl */
+    border: 3px solid transparent;
+    border-radius: 0.75rem;
     z-index: 0;
   }
 
   .fire-border::before {
     content: "";
     position: absolute;
-    inset: -2px; /* extend slightly beyond the element */
+    inset: -3px;
     border-radius: inherit;
-    padding: 2px;
+    padding: 3px;
     background: linear-gradient(
       45deg,
       #ff0000,
@@ -186,22 +195,6 @@
     }
     100% {
       background-position: 0% 50%;
-    }
-  }
-
-  .jump {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-    100% {
-      transform: translateY(0px);
     }
   }
 }

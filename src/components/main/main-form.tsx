@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-function HeroForm() {
+function MainForm() {
   return (
     <form className="w-full max-w-2xl space-y-4 px-2 md:px-4">
       <Input
@@ -21,4 +21,4 @@ function HeroForm() {
   );
 }
 
-export default HeroForm;
+export default MainForm;

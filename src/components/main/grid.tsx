@@ -43,56 +43,61 @@ function Grid() {
     <section
       ref={containerRef}
       id="grid"
-      className="grid h-150 w-full scroll-mt-16 grid-cols-2 grid-rows-3 gap-4 px-2 text-sm sm:h-160 md:h-180 md:px-4 md:text-base xl:h-200"
+      className="grid h-150 w-full scroll-mt-48 grid-cols-2 grid-rows-3 gap-4 px-2 text-sm sm:h-160 md:h-180 md:px-4 md:text-base xl:h-240"
     >
       <div
         className={cn(
-          "border-muted-foreground/50 relative overflow-hidden border border-dashed",
+          "border-muted-foreground/50 hover:border-muted-foreground group relative overflow-hidden border border-dashed transition-colors",
           GRID_ITEM,
         )}
       >
         <h3>
-          <div className="flex flex-col items-center gap-2">
-            <Radar className="mb-1" />
-            <span className="font-bold sm:text-lg">
+          <div className="flex flex-col items-center gap-2 md:gap-4 md:text-lg">
+            <Radar className="group-hover:text-primary mb-1 transition-colors group-hover:animate-ping md:size-8 lg:size-12" />
+            <span className="font-bold sm:text-lg md:text-2xl lg:text-3xl">
               Precision Tracking
-            </span>{" "}
+            </span>
             <br /> Real-time monitoring without noise.
           </div>
         </h3>
       </div>
-      <div className={cn("fire-border", GRID_ITEM)}>
+      <div className={cn("fire-border group", GRID_ITEM)}>
         <h3>
-          <div className="flex flex-col items-center gap-2">
-            <Pin className="mb-1" />
-            <span className="font-bold sm:text-lg">Seamless Pinning</span>{" "}
+          <div className="flex flex-col items-center gap-2 md:gap-4 md:text-lg">
+            <Pin className="group-hover:text-primary mb-1 transition-colors group-hover:animate-ping md:size-8 lg:size-12" />
+            <span className="font-bold sm:text-lg md:text-2xl lg:text-3xl">
+              Seamless Pinning
+            </span>{" "}
             <br /> Save products in one click.
           </div>
         </h3>
       </div>
-      <div className={cn("fire-border relative col-span-2", GRID_ITEM)}>
+      <div className={cn("fire-border group relative col-span-2", GRID_ITEM)}>
         <Image
           src="/cat-3.webp"
           alt="Privacy"
           fill
           className="overflow-hidden rounded-2xl object-cover"
+          priority
+          quality={50}
         />
         <h3 className="absolute inset-0 flex size-full flex-col justify-center bg-black/25 p-4">
-          <div className="flex flex-col items-center gap-2">
-            <Cat className="mb-1" />
-            <span className="font-bold sm:text-lg">
+          <div className="flex flex-col items-center gap-2 md:gap-4 md:text-lg">
+            <Cat className="group-hover:text-primary mb-1 transition-colors group-hover:animate-ping md:size-8 lg:size-12" />
+            <span className="font-bold sm:text-lg md:text-2xl lg:text-3xl">
               Smart Alerts
-            </span> <br /> Get notified only when prices change.
+            </span>{" "}
+            <br /> Get notified only when prices change.
           </div>
         </h3>
       </div>
-      <div className={cn("fire-border", GRID_ITEM)}>
+      <div className={cn("fire-border group", GRID_ITEM)}>
         <h3>
-          <div className="flex flex-col items-center gap-2">
-            <Cloud className="mb-1" />
-            <span className="font-bold sm:text-lg">
+          <div className="flex flex-col items-center gap-2 md:gap-4 md:text-lg">
+            <Cloud className="group-hover:text-primary mb-1 transition-colors group-hover:animate-ping md:size-8 lg:size-12" />
+            <span className="font-bold sm:text-lg md:text-2xl lg:text-3xl">
               Cross-platform Sync
-            </span>{" "}
+            </span>
             <br />
             Your watchlist, everywhere.
           </div>
@@ -100,7 +105,7 @@ function Grid() {
       </div>
       <div
         className={cn(
-          "border-muted-foreground/50 relative overflow-hidden border-t border-b border-l border-dashed",
+          "border-muted-foreground/50 hover:border-muted-foreground group relative overflow-hidden border border-dashed transition-colors",
           GRID_ITEM,
         )}
       >
@@ -109,13 +114,16 @@ function Grid() {
           alt="Privacy"
           fill
           className="overflow-hidden rounded-xl object-cover"
+          quality={50}
+          priority
         />
         <h3 className="absolute inset-0 flex size-full flex-col justify-center bg-black/40 p-4">
-          <div className="flex flex-col items-center gap-2">
-            <ShieldCheck className="mb-1" />
-            <span className="font-bold sm:text-lg">
+          <div className="flex flex-col items-center gap-2 md:gap-4 md:text-lg">
+            <ShieldCheck className="group-hover:text-primary mb-1 transition-colors group-hover:animate-ping md:size-8 lg:size-12" />
+            <span className="font-bold sm:text-lg md:text-2xl lg:text-3xl">
               Privacy-First
-            </span> <br /> We track products, not people.
+            </span>{" "}
+            <br /> We track products, not people.
           </div>
         </h3>
       </div>
