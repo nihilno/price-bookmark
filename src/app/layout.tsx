@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "tbd",
+  title: "Pounce | Home",
 };
 
 export default function RootLayout({

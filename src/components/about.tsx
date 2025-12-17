@@ -7,10 +7,10 @@ import { ScrollTrigger } from "gsap/all";
 import Image from "next/image";
 import { useMediaQuery } from "react-responsive";
 
-function About() {
-  gsap.registerPlugin(ScrollTrigger);
-  const isMobile = useMediaQuery({ minWidth: 475 });
+gsap.registerPlugin(ScrollTrigger);
 
+function About() {
+  const isMobile = useMediaQuery({ maxWidth: 474 });
   useGSAP(() => {
     gsap.fromTo(
       "#about",

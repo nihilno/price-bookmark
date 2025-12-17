@@ -44,7 +44,7 @@ function Grid() {
     <section
       ref={containerRef}
       id="grid"
-      className="grid h-150 scroll-mt-32 grid-cols-2 grid-rows-3 gap-4 px-2 text-sm sm:h-160 md:h-180 md:px-4 md:text-base xl:h-200"
+      className="grid h-150 w-full scroll-mt-32 grid-cols-2 grid-rows-3 gap-4 px-2 text-sm sm:h-160 md:h-180 md:px-4 md:text-base xl:h-200"
     >
       <div
         className={cn(

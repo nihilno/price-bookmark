@@ -7,7 +7,9 @@ function Header() {
       <nav className="bg-background/50 relative z-50 container mx-auto mt-8 flex items-center justify-between gap-1 rounded-xl border-t-2 border-b-2 border-l-2 px-[5vw] py-8 shadow-md backdrop-blur-md">
         <Logo />
         <div className="flex items-center gap-3">
-          <SignInButton />x
+          <div className="flex items-center gap-3">
+            <SignInButton />
+          </div>
         </div>
       </nav>
     </header>

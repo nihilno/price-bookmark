@@ -15,9 +15,10 @@ function Hero() {
       <HeroForm />
       <Arrow href="#grid" />
       <Grid />
-      <Arrow href="#highlight" />
+      <Arrow href="#badges" />
       <About />
       <Badges />
+
       <Title />
       <HeroForm />
     </section>
