@@ -130,6 +130,12 @@
     scroll-behavior: smooth;
   }
 
+  img,
+  svg,
+  video {
+    user-select: none;
+  }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -171,12 +177,6 @@
     z-index: -1;
   }
 
-  img,
-  svg,
-  video {
-    user-select: none;
-  }
-
   @keyframes fireGlow {
     0% {
       background-position: 0% 50%;
@@ -186,6 +186,22 @@
     }
     100% {
       background-position: 0% 50%;
+    }
+  }
+
+  .jump {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0px);
     }
   }
 }

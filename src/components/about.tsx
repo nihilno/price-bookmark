@@ -32,7 +32,7 @@ function About() {
   return (
     <section
       id="about"
-      className="relative container mx-auto h-dvh max-h-120 max-w-300 scroll-mt-32 overflow-hidden rounded-xl border border-dashed px-4 py-16 lg:max-h-140"
+      className="relative container mx-auto h-dvh max-h-120 max-w-300 scroll-mt-32 overflow-hidden px-4 py-16 lg:max-h-140"
     >
       <Image
         src="/about.webp"

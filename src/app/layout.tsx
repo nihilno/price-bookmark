@@ -39,7 +39,7 @@ export default function RootLayout({
         <div className="sm:text-lg">
           <Providers>
             <Header />
-            <main className="my-8 px-4">{children}</main>
+            <main className="container mx-auto my-8 px-4">{children}</main>
             <Footer />
           </Providers>
         </div>

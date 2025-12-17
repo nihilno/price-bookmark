@@ -22,7 +22,6 @@ function Badges() {
       y: 0,
       duration: 0.8,
       ease: "power3.out",
-      stagger: 0.25,
       scrollTrigger: {
         trigger: sectionRef.current,
         start: "top 80%",
@@ -35,7 +34,7 @@ function Badges() {
     <section className="grid grid-cols-2 gap-10" ref={sectionRef}>
       <div
         id="badges"
-        className="relative my-64 flex w-full scroll-mt-48 flex-col items-start gap-64"
+        className="relative my-64 flex w-full scroll-mt-24 flex-col items-start gap-64"
       >
         <div className="badge-item bg-foreground/10 flex flex-col items-center gap-2 self-end rounded-full px-5 py-2 shadow-sm transition hover:shadow-md">
           <Cat />
@@ -65,7 +64,7 @@ function Badges() {
           src="/cat-badge.webp"
           alt="Cat Catcher"
           fill
-          className="translate-y-50 scale-140 object-contain object-center"
+          className="jump translate-y-50 scale-140 object-contain object-center"
         />
       </div>
     </section>
