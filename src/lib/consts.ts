@@ -27,7 +27,7 @@ export const SPONSORS = [
   { name: "Google", img: "/sponsors/google.svg" },
   { name: "IBM", img: "/sponsors/ibm.svg" },
   { name: "Mercedes", img: "/sponsors/mercedes.svg" },
-  { name: "Mini", img: "/sponsors/mini.svg" },
+  { name: "Visual", img: "/sponsors/visual.svg" },
   { name: "Toyota", img: "/sponsors/toyota.svg" },
   { name: "Walmart", img: "/sponsors/walmart.svg" },
 ];

@@ -28,7 +28,7 @@ function Footer() {
             return (
               <ul key={index} className="space-y-1 px-1 text-xs sm:text-sm">
                 <h4 className="mb-2 font-bold">{key}</h4>
-                {value.map((item: any) => (
+                {value.map((item: string) => (
                   <li
                     key={item}
                     className="text-muted-foreground hover:text-foreground cursor-pointer transition-colors"
