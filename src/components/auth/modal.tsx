@@ -12,10 +12,10 @@ function Modal(props: ModalProps) {
     <Dialog {...props}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogTitle>Sign in to continue</DialogTitle>
           <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+            Sign in with your Google account to access all features and save
+            your bookmarks.
           </DialogDescription>
         </DialogHeader>
         <SignInGoogle />

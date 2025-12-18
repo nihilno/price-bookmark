@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/client";
 
@@ -13,7 +15,7 @@ function SignInGoogle() {
     });
   }
 
-  return <Button onClick={handleSignInGoogle}>Sing in with google</Button>;
+  return <Button onClick={handleSignInGoogle}>Sign in with Google</Button>;
 }
 
 export default SignInGoogle;
