@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession } from "@/app/hooks/useSession";
+import { useSession } from "@/hooks/useSession";
 import { Loader2Icon, User } from "lucide-react";
 import Image from "next/image";
 

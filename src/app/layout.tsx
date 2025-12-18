@@ -11,7 +11,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Pounce | Home",
+  title: {
+    template: "%s | Home",
+    default: "Pounce | Home",
+  },
 };
 
 export default function RootLayout({
@@ -36,10 +39,10 @@ export default function RootLayout({
           />
         </video>
 
-        <div className="sm:text-lg">
+        <div className="flex h-dvh flex-col sm:text-lg">
           <Providers>
             <Header />
-            <main className="container mx-auto mt-40 mb-8 px-4">
+            <main className="container mx-auto mt-40 mb-8 flex-1 px-4">
               {children}
             </main>
             <Footer />

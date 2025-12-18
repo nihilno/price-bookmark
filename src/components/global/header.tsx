@@ -2,6 +2,7 @@
 
 import SignInBtn from "@/components/auth/sign-in-btn";
 import { Radar, Settings } from "lucide-react";
+import Link from "next/link";
 import UserBtn from "../auth/user-btn";
 import Logo from "./logo";
 
@@ -12,7 +13,9 @@ function Header() {
         <Settings className="button-hover hover:text-primary size-6 shrink-0 cursor-pointer" />
 
         <div className="flex items-center gap-4 sm:gap-6">
-          <Radar className="button-hover hover:text-primary size-6 cursor-pointer" />
+          <Link href="/watchlist">
+            <Radar className="button-hover hover:text-primary size-6 cursor-pointer" />
+          </Link>
           <Logo />
           <SignInBtn />
         </div>

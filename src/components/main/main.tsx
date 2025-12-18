@@ -1,4 +1,6 @@
 import About from "@/components/main/about";
+import { CARD_STYLE } from "@/lib/consts";
+import { cn } from "@/lib/utils";
 import Arrow from "../global/arrow";
 import Grid from "./grid";
 import MainForm from "./main-form";
@@ -7,7 +9,7 @@ import Title from "./title";
 
 function Main() {
   return (
-    <section className="bg-background/50 flex flex-col items-center gap-8 border-r-2 border-l-2 px-2 py-16 text-center backdrop-blur-md">
+    <section className={cn(CARD_STYLE)}>
       <Title />
       <MainForm />
       <Arrow href="#" />

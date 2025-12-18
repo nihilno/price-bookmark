@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession } from "@/app/hooks/useSession";
+import { useSession } from "@/hooks/useSession";
 import { cn } from "@/lib/utils";
 import { Loader2Icon, UserPlus } from "lucide-react";
 import { useState } from "react";

@@ -37,3 +37,6 @@ export const SPONSORS = [
 
 export const FORM_BUTTON =
   "h-15 w-full rounded-xl text-sm font-bold shadow-2xl transition-all duration-300 ease-in-out hover:translate-y-1 hover:scale-105 hover:rotate-2 hover:shadow-inner hover:shadow-black/40 active:translate-y-2 active:scale-95 md:h-18 md:text-base";
+
+export const CARD_STYLE =
+  "bg-background/50 flex flex-col items-center gap-8 rounded-xl border-2 px-2 py-16 text-center backdrop-blur-md";
