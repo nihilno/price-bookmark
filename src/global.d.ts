@@ -7,4 +7,11 @@ declare global {
     open: boolean;
     onOpenChange: Dispatch<SetStateAction<boolean>>;
   };
+
+  type ScrapedProduct = {
+    productName: string;
+    currentPrice: number;
+    currencyCode?: string;
+    productImageUrl?: string;
+  };
 }

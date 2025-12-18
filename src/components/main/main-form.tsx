@@ -34,7 +34,7 @@ function MainForm() {
             )}
           >
             {isLoadingSession && (
-              <Loader2Icon className="size-4 animate-spin" />
+              <Loader2Icon className="size-5 animate-spin" />
             )}
             <span>
               {isLoadingSession ? "Checking You..." : "Sign In to Track"}
@@ -48,7 +48,7 @@ function MainForm() {
           disabled={isLoadingSession}
           className={cn(FORM_BUTTON)}
         >
-          {isLoadingSession && <Loader2Icon className="size-4 animate-spin" />}
+          {isLoadingSession && <Loader2Icon className="size-5 animate-spin" />}
           <span>Track Now</span>
         </Button>
       )}

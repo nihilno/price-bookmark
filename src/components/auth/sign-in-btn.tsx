@@ -19,12 +19,12 @@ function SignInBtn() {
         size="icon-sm"
         disabled
         className="button-hover hover:text-primary hover:bg-background!"
+        aria-label="Loading session"
       >
         <Loader2Icon className="size-5 animate-spin" />
       </Button>
     );
   }
-
   return user ? (
     <SignOut />
   ) : (
@@ -34,6 +34,7 @@ function SignInBtn() {
         size="icon-sm"
         className={cn("button-hover hover:text-primary hover:bg-background!")}
         onClick={() => setIsOpen(true)}
+        aria-label="Sign in"
       >
         <UserPlus
           className={cn("size-5.5", isOpen ? "text-primary animate-pulse" : "")}

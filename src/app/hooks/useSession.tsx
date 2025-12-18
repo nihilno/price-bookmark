@@ -9,11 +9,17 @@ export function useSession() {
   const [isLoadingSession, setIsLoadingSession] = useState(true);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      setUser(data.session?.user ?? null);
-      setIsLoadingSession(false);
-    });
-
+    supabase.auth
+      .getSession()
+      .then(({ data }) => {
+        setUser(data.session?.user ?? null);
+      })
+      .catch((error) => {
+        console.error("Failed to get session:", error);
+      })
+      .finally(() => {
+        setIsLoadingSession(false);
+      });
     const { data: subscription } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         setUser(session?.user ?? null);
