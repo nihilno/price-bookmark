@@ -35,7 +35,7 @@ export async function POST(request: Request) {
         const newPrice = productData.currentPrice;
         const oldPrice = product.current_price as number;
 
-        await supabase
+        const { error: updateError } = await supabase
           .from("products")
           .update({
             current_price: newPrice,
@@ -45,14 +45,20 @@ export async function POST(request: Request) {
             updated_at: new Date().toISOString(),
           })
           .eq("id", product.id);
+        if (updateError) {
+          console.error("Error updating product:", product.id, updateError);
+          continue;
+        }
 
         if (oldPrice !== newPrice) {
-          await supabase.from("price_history").insert({
-            product_id: product.id,
-            price: newPrice,
-            currency: productData.currencyCode || product.currency,
-            // add checked_at timestamp?
-          });
+          const { error: historyError } = await supabase
+            .from("price_history")
+            .insert({
+              product_id: product.id,
+              price: newPrice,
+              currency: productData.currencyCode || product.currency,
+              // add checked_at timestamp?
+            });
 
           if (newPrice < oldPrice) {
             // send notification
@@ -62,6 +68,14 @@ export async function POST(request: Request) {
             if (user && user.email) {
               //send actual email
             }
+          }
+
+          if (historyError) {
+            console.error(
+              "Error inserting price history for product:",
+              product.id,
+              historyError,
+            );
           }
         }
       } catch (error) {

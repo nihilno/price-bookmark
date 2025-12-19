@@ -71,18 +71,20 @@ function Product(props: ProductProps) {
         <div className="mt-6 mb-12 flex flex-col items-center gap-2 text-2xl font-bold">
           <div className="flex items-center gap-2">
             <span>
-              {priceHistory.success
+              {priceHistory.success && priceHistory.history.length > 0
                 ? priceHistory.history[priceHistory.history.length - 1].price
                 : current_price}
             </span>
             <span>{currency}</span>
             {priceHistory.success &&
-            priceHistory.history[priceHistory.history.length - 1].price <
+              priceHistory.history.length > 0 &&
+              (priceHistory.history[priceHistory.history.length - 1].price <
               current_price ? (
-              <TrendingUp className="size-7 animate-pulse text-red-500" />
-            ) : (
-              <TrendingDown className="size-7 animate-pulse text-green-500" />
-            )}
+                <TrendingDown className="size-7 animate-pulse text-green-500" />
+              ) : priceHistory.history[priceHistory.history.length - 1].price >
+                current_price ? (
+                <TrendingUp className="size-7 animate-pulse text-red-500" />
+              ) : null)}{" "}
           </div>
         </div>
         <div className="mt-auto space-y-4">
