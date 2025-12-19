@@ -17,6 +17,10 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export function ChartLineDots({ data }: { data: PriceHistory[] }) {
+  if (!data.length) {
+    return null;
+  }
+
   const chartData = data.map((entry) => ({
     date: new Date(entry.checked_at).toLocaleDateString("en-US", {
       month: "short",

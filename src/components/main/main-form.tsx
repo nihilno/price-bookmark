@@ -64,7 +64,8 @@ function MainForm() {
       onSubmit={handleSubmit}
     >
       <Input
-        type="text"
+        type="url"
+        inputMode="url"
         name="url"
         placeholder="Enter product URL to track."
         className="bg-background! focus-visible:ring-primary focus:ring-primary h-15 w-full px-4 text-sm md:h-18 md:text-base!"

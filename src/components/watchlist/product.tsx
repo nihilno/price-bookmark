@@ -6,7 +6,7 @@ import { ChevronLeft, Loader2Icon, Radar, Tag, XIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import { ChartLineDots } from "./chart";
 
@@ -16,14 +16,26 @@ function Product(props: ProductProps) {
   const { isDeleting, handleDelete } = useDeleteProduct();
   const [isConfirming, setIsConfirming] = useState(false);
   const { replace } = useRouter();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   async function onDelete(id: string) {
     if (!isConfirming) {
       setIsConfirming(true);
-      setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         setIsConfirming(false);
       }, 3000);
     } else {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
       await handleDelete(id);
       setIsConfirming(false);
       replace("/watchlist");
@@ -132,10 +144,12 @@ function Product(props: ProductProps) {
               <p className="opacity-70">
                 Last sniff:{" "}
                 <span>
-                  {formatDate(
-                    priceHistory.history[priceHistory.history.length - 1]
-                      .checked_at,
-                  )}
+                  {priceHistory.history.length > 0
+                    ? formatDate(
+                        priceHistory.history[priceHistory.history.length - 1]
+                          .checked_at,
+                      )
+                    : "N/A"}
                 </span>
               </p>
               <Image
