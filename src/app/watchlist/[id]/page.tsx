@@ -1,4 +1,3 @@
-import { ItemsSkeleton } from "@/components/skeletons/skeletons";
 import { Button } from "@/components/ui/button";
 import Product from "@/components/watchlist/product";
 import { getPriceHistory, getSingleProduct } from "@/lib/actions/actions";
@@ -7,7 +6,6 @@ import { cn } from "@/lib/utils";
 import { AlertTriangle, ChevronLeft, Info } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
-import { Suspense } from "react";
 
 export const revalidate = 30;
 
@@ -57,9 +55,7 @@ export default async function WatchlistItemPage({
   return (
     <section className={cn(CARD_STYLE)}>
       {product ? (
-        <Suspense fallback={<ItemsSkeleton />}>
-          <Product product={product} priceHistory={priceHistory} />
-        </Suspense>
+        <Product product={product} priceHistory={priceHistory} />
       ) : (
         <div className="flex w-full flex-col items-center gap-4">
           <Info className="text-destructive size-12 animate-pulse" />

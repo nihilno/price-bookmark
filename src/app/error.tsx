@@ -20,7 +20,7 @@ function Error({
         <h2 className="mb-2 text-2xl font-semibold">Something went wrong.</h2>
         <p className="mt-4 max-w-md text-sm opacity-60">
           {error.message ||
-            "An error occured, but don't worry — we'll get you back."}
+            "An error occurred, but don't worry — we'll get you back."}
         </p>
         <div className="mt-6 space-x-2">
           <Button onClick={reset} variant="outline" size={"sm"}>

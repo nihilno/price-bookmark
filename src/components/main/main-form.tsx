@@ -104,7 +104,7 @@ function MainForm() {
           {(isLoadingSession || isLoading) && (
             <Loader2Icon className="size-5 animate-spin" />
           )}
-          <span>{isLoading ? "Scrapping the website..." : "Track!"}</span>
+          <span>{isLoading ? "Scraping the website..." : "Track!"}</span>
         </Button>
       )}
 

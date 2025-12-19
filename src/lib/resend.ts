@@ -117,6 +117,3 @@ export async function sendPriceDropAlert(
     return { success: false, error: "Unexpected error sending email." };
   }
 }
-
-// https://pounce-bookmark.vercel.app/api/cron/check-prices
-// Bearer 07bf4131d25a92747670d4f692be27986a3dc345f62d4ed082176523ec0513b2
