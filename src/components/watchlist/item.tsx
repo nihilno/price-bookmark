@@ -1,49 +1,19 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { deleteProduct } from "@/lib/actions/actions";
-import { cn } from "@/lib/utils";
+import { useDeleteProduct } from "@/hooks/useDeleteProduct";
+import { cn, slugify } from "@/lib/utils";
 import { Info, Loader2Icon, Radar, Tag, XIcon } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import { toast } from "sonner";
 
 function Item({ product }: { product: Product }) {
   const { name, current_price, currency, url, image_url, id } = product;
-  const [isDeleting, setIsDeleting] = useState(false);
+  const { isDeleting, handleDelete } = useDeleteProduct();
   const isMobile = useMediaQuery({ maxWidth: 375 });
 
-  async function handleDelete(id: string) {
-    setIsDeleting(true);
-    try {
-      const result = await deleteProduct(id);
-
-      if (!result.success) {
-        toast.error("Delete failed", {
-          description:
-            result.message ||
-            "An error occurred while trying to remove this item.",
-        });
-      } else {
-        toast.success("Item deleted", {
-          description:
-            result.message || "The item was removed from your watchlist.",
-        });
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error("Unexpected error", {
-        description:
-          "Something went wrong while deleting. Please try again later.",
-      });
-    } finally {
-      setIsDeleting(false);
-    }
-  }
-
   return (
-    <div className="group hover:bg-background hover:border-muted-foreground/30 grid grid-cols-1 gap-y-3 border p-2 text-sm backdrop-blur-3xl transition-all duration-300 ease-in-out sm:grid-cols-4 md:px-4 md:text-base">
+    <article className="group hover:bg-background hover:border-muted-foreground/30 grid grid-cols-1 gap-y-3 border p-2 text-sm backdrop-blur-3xl transition-all duration-300 ease-in-out sm:grid-cols-4 md:px-4 md:text-base">
       <div className="flex items-center gap-4 sm:col-span-3">
         <h3 className="line-clamp-1 text-left lg:text-xl">{name}</h3>
         <div className="ml-auto flex shrink-0 items-center gap-1 font-bold lg:text-xl">
@@ -53,30 +23,30 @@ function Item({ product }: { product: Product }) {
         </div>
       </div>
       <div className="col-1 flex h-fit w-fit items-center gap-2">
-        <Link href={`/watchlist/${id}`}>
+        <Link href={`/watchlist/${slugify(name)}?id=${id}`}>
           <Button
             size="sm"
             className="rounded-sm text-xs md:text-base!"
             variant="outline"
             disabled={isDeleting}
           >
-            <Info className="size-3 lg:size-4" />
+            <Info className="size-3 shrink-0 lg:size-4" />
             <span className={cn(isMobile ? "hidden" : "block")}>More</span>
           </Button>
         </Link>
-        <Link href={url}>
+        <a href={url} target="_blank">
           <Button
             size="sm"
             className="rounded-sm text-xs md:text-base!"
             variant="outline"
             disabled={isDeleting}
           >
-            <Tag className="size-3 lg:size-4" />
+            <Tag className="size-3 shrink-0 lg:size-4" />
             <span className={cn(isMobile ? "hidden" : "block")}>
               View Product
             </span>
           </Button>
-        </Link>
+        </a>
         <Button
           size="sm"
           className="border-destructive/50! bg-destructive/20! hover:border-destructive/60! hover:bg-destructive/30! rounded-sm text-xs md:text-base!"
@@ -85,14 +55,15 @@ function Item({ product }: { product: Product }) {
           onClick={() => handleDelete(id)}
         >
           {isDeleting ? (
-            <Loader2Icon className="size-3 animate-spin lg:size-4" />
+            <Loader2Icon className="size-3 shrink-0 animate-spin lg:size-4" />
           ) : (
-            <XIcon className="size-3 lg:size-4" />
+            <XIcon className="size-3 shrink-0 lg:size-4" />
           )}
         </Button>
       </div>
 
       {image_url ? (
+        // eslint-disable-next-line @next/next/no-img-element
         <img
           src={image_url}
           alt={name.slice(0, 10)}
@@ -105,7 +76,7 @@ function Item({ product }: { product: Product }) {
       ) : (
         <div className="absolute top-2 col-start-4 hidden size-16 justify-self-end border backdrop-blur-3xl sm:block md:right-4" />
       )}
-    </div>
+    </article>
   );
 }
 

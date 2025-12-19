@@ -2,11 +2,15 @@
 
 import SignInBtn from "@/components/auth/sign-in-btn";
 import UserBtn from "@/components/auth/user-btn";
+import { cn } from "@/lib/utils";
 import { Radar, Settings } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Logo from "./logo";
 
 function Header() {
+  const pathname = usePathname();
+
   return (
     <header className="fixed top-0 left-1/2 z-50 container -translate-x-1/2 px-4">
       <nav className="bg-background/50 mt-8 flex h-20! items-center justify-between gap-4 rounded-xl border-2 px-4 shadow-md backdrop-blur-2xl sm:gap-6">
@@ -14,7 +18,14 @@ function Header() {
 
         <div className="flex items-center gap-4 sm:gap-6">
           <Link href="/watchlist">
-            <Radar className="button-hover hover:text-primary size-6 cursor-pointer" />
+            <Radar
+              className={cn(
+                "button-hover hover:text-primary size-6 cursor-pointer",
+                pathname.startsWith("/watchlist")
+                  ? "text-primary animate-pulse"
+                  : "",
+              )}
+            />
           </Link>
           <Logo />
           <SignInBtn />

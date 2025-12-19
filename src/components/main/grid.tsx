@@ -77,7 +77,6 @@ function Grid() {
           alt="Privacy"
           fill
           className="overflow-hidden rounded-2xl object-cover"
-          priority
           quality={50}
         />
         <h3 className="absolute inset-0 flex size-full flex-col justify-center bg-black/25 p-4">
@@ -114,7 +113,6 @@ function Grid() {
           fill
           className="overflow-hidden rounded-xl object-cover"
           quality={50}
-          priority
         />
         <h3 className="absolute inset-0 flex size-full flex-col justify-center bg-black/40 p-4">
           <div className="flex flex-col items-center gap-2 md:gap-4 md:text-lg">

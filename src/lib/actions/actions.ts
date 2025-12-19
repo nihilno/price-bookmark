@@ -136,12 +136,13 @@ export async function deleteProduct(id: string) {
     };
   }
 }
+
 export async function getProducts(): Promise<GetProductsResult> {
   try {
     const supabase = await createClient();
     const { data: products, error } = await supabase
       .from("products")
-      .select("*")
+      .select("name, id, current_price, currency, url, image_url")
       .order("created_at", { ascending: false });
 
     if (error) throw error;
@@ -175,6 +176,48 @@ export async function getPriceHistory(
     return {
       success: false,
       error: "We could not fetch this product's history right now.",
+    };
+  }
+}
+
+export async function getSingleProduct(
+  id: string,
+): Promise<GetSingleProductResult> {
+  try {
+    const supabase = await createClient();
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      return {
+        success: false,
+        error: "Please sign in to view product details.",
+      };
+    }
+
+    const { data: product, error } = await supabase
+      .from("products")
+      .select(
+        "created_at, currency, image_url, name, current_price, url, updated_at, id",
+      )
+      .eq("id", id)
+      .eq("user_id", user.id)
+      .single();
+
+    if (error)
+      return {
+        success: false,
+        error: "We could not find this product.",
+      };
+
+    return { success: true, product };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: "We could not fetch the product details right now.",
     };
   }
 }

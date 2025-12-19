@@ -39,8 +39,7 @@ function About() {
         alt="About"
         fill
         className="object-cover object-top md:object-center"
-        priority
-        quality={50}
+        quality={75}
       />
       <div className="text-foreground absolute inset-0 flex items-center justify-start bg-black/50">
         <h1

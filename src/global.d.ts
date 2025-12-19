@@ -15,14 +15,11 @@ declare global {
 
   type Product = {
     id: string;
-    user_id: string;
     url: string;
     name: string;
     current_price: number;
     currency: string;
     image_url?: string;
-    created_at: string;
-    updated_at: string;
   };
 
   type GetProductsResult =
@@ -39,5 +36,9 @@ declare global {
 
   type GetPriceHistoryResult =
     | { success: true; history: PriceHistory[] }
+    | { success: false; error: string };
+
+  type GetSingleProductResult =
+    | { success: true; product: Product }
     | { success: false; error: string };
 }

@@ -3,12 +3,14 @@
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/client";
 import { Loader2Icon, LogOut } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
 function SignOutBtn() {
   const supabase = createClient();
   const [isLoading, setIsLoading] = useState(false);
+  const { replace } = useRouter();
 
   async function handleSignOut() {
     setIsLoading(true);
@@ -17,6 +19,7 @@ function SignOutBtn() {
       toast.success("Signed out", {
         description: "You’ve safely padded out of your account.",
       });
+      replace("/");
     } catch (error) {
       console.error(error);
 
