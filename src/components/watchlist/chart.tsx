@@ -7,6 +7,7 @@ import {
   ChartTooltipContent,
   type ChartConfig,
 } from "@/components/ui/chart";
+import { useMemo } from "react";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 
 const chartConfig = {
@@ -17,19 +18,23 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export function ChartLineDots({ data }: { data: PriceHistory[] }) {
+  const chartData = useMemo(
+    () =>
+      data.map((entry) => ({
+        date: new Date(entry.checked_at).toLocaleString("en-US", {
+          month: "short",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+        price: entry.price,
+      })),
+    [data],
+  );
+
   if (!data.length) {
     return null;
   }
-
-  const chartData = data.map((entry) => ({
-    date: new Date(entry.checked_at).toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    }),
-    price: entry.price,
-  }));
 
   return (
     <Card className="pt-6 pb-2">

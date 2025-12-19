@@ -2,6 +2,9 @@
 
 import { useDeleteProduct } from "@/hooks/useDeleteProduct";
 import { cn, formatDate, normalizeUrl } from "@/lib/utils";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 import {
   ChevronLeft,
   Loader2Icon,
@@ -25,6 +28,44 @@ function Product(props: ProductProps) {
   const [isConfirming, setIsConfirming] = useState(false);
   const { replace } = useRouter();
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const radarRef = useRef<HTMLDivElement>(null);
+  const chartRef = useRef<HTMLDivElement>(null);
+  gsap.registerPlugin(ScrollTrigger);
+
+  useGSAP(() => {
+    gsap.fromTo(
+      radarRef.current,
+      { scale: 0.8, opacity: 0, yPercent: 20 },
+      {
+        scale: 1,
+        opacity: 1,
+        yPercent: 0,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: radarRef.current,
+          start: "top bottom",
+          end: "top center",
+          scrub: 1,
+        },
+      },
+    );
+    gsap.fromTo(
+      chartRef.current,
+      { scale: 0.8, opacity: 0, yPercent: 20 },
+      {
+        scale: 1,
+        opacity: 1,
+        yPercent: 0,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: chartRef.current,
+          start: "top bottom",
+          end: "top center",
+          scrub: 1,
+        },
+      },
+    );
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -156,7 +197,10 @@ function Product(props: ProductProps) {
           <p className="text-muted-foreground text-sm">{priceHistory.error} </p>
         ) : (
           <div className="rounded-md">
-            <div className="relative mb-8 flex w-full flex-col items-center gap-4 rounded-md border p-6 text-center backdrop-blur-3xl">
+            <div
+              className="relative mb-8 flex w-full flex-col items-center gap-4 rounded-md p-6 text-center backdrop-blur-3xl"
+              ref={radarRef}
+            >
               <h3 className="text-lg font-semibold">
                 The price is now under our watch
               </h3>
@@ -181,7 +225,9 @@ function Product(props: ProductProps) {
                 quality={50}
               />
             </div>
-            <ChartLineDots data={priceHistory.history} />
+            <div ref={chartRef}>
+              <ChartLineDots data={priceHistory.history} />
+            </div>
           </div>
         )}
 

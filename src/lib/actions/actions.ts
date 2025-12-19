@@ -3,6 +3,7 @@
 import { scrapeProduct } from "@/lib/firecrawl";
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
+import { cache } from "react";
 
 export async function addProduct(formData: FormData) {
   const rawUrl = formData.get("url");
@@ -180,42 +181,43 @@ export async function getPriceHistory(
   }
 }
 
-export async function getSingleProduct(
-  id: string,
-): Promise<GetSingleProductResult> {
-  try {
-    const supabase = await createClient();
+export const getSingleProduct = cache(
+  async (id: string): Promise<GetSingleProductResult> => {
+    try {
+      const supabase = await createClient();
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
 
-    if (!user) {
+      if (!user) {
+        return {
+          success: false,
+          error: "Please sign in to view product details.",
+        };
+      }
+
+      const { data: product, error } = await supabase
+        .from("products")
+        .select("*")
+        .eq("id", id)
+        .eq("user_id", user.id)
+        .single();
+
+      if (error) {
+        return {
+          success: false,
+          error: "We could not find this product.",
+        };
+      }
+
+      return { success: true, product };
+    } catch (error) {
+      console.error(error);
       return {
         success: false,
-        error: "Please sign in to view product details.",
+        error: "We could not fetch the product details right now.",
       };
     }
-
-    const { data: product, error } = await supabase
-      .from("products")
-      .select("*")
-      .eq("id", id)
-      .eq("user_id", user.id)
-      .single();
-
-    if (error)
-      return {
-        success: false,
-        error: "We could not find this product.",
-      };
-
-    return { success: true, product };
-  } catch (error) {
-    console.error(error);
-    return {
-      success: false,
-      error: "We could not fetch the product details right now.",
-    };
-  }
-}
+  },
+);
